@@ -1,3 +1,4 @@
+import fs = require('fs-extra');
 import filenameUtils = require('./filename-utils');
 import constants = require('../.constants');
 import ariaTools = require('./aria-tools.js');
