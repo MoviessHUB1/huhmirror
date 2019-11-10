@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 
 # install ca-certificates so that HTTPS works consistently
 RUN apk add --no-cache ca-certificates
@@ -19,9 +19,11 @@ RUN mkdir /bot
 RUN chmod 777 /bot
 WORKDIR /bot
 
-RUN git clone https://github.com/a092devs/huhmirror /bot
+RUN git clone https://github.com/a092devs/huhmirror.git /bot
 
 COPY ./src/.constants.js /bot/src/
-COPY ./aria*.sh ./client_secret.json ./credentials.json ./start.sh /bot/
+COPY ./aria.sh ./client_secret.json ./credentials.json ./start.sh /bot/
 
+RUN cd /bot
+RUN npm install && tsc
 CMD ["bash","start.sh"]
